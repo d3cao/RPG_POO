@@ -5,8 +5,13 @@ import save_file
 player = None
 personagens = []
 
+def cache():
+    save_file.load('personagens.json', personagens)
+
 def salvar():
      save_file.salvar_json(personagens, 'personagens.json')
+     print('salvando personagens...')
+     retorno()
 
 def exit():
     os.system('clear')
@@ -41,8 +46,10 @@ def criacao_personagem():
 
 def ficha():
     os.system('clear')
-    print('Ficha Personagem :')
-    player.ficha()
+    for personagem in personagens:
+        print(f'Ficha de {personagem.nome} :')
+        personagem.ficha()
+        print()
     retorno()
 
 def interface():
@@ -65,14 +72,6 @@ def interface():
         escolhida()
     else :
         print('opção invalida')
-    '''
-    if entry == '1':
-        criacao_personagem()
-    elif entry == '2':
-        ficha()
-    elif entry == '3':
-        exit()
-    '''
 
 def main():
     interface()
